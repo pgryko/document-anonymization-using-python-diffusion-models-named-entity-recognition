@@ -14,10 +14,11 @@ Presenter's notes:
 - You can add speaker notes in HTML comments like this one.
 -->
 
-# **Anonymization of Sensitive Information in Financial Documents**  
+# **[DRAFT SLIDES] Anonymization of Sensitive Information in Financial Documents**  
 **Using Python, Diffusion Models, and Named Entity Recognition**
 
 **Speaker**: Dr Piotr Gryko
+
 
 ---
 
@@ -70,7 +71,7 @@ Presenter's notes:
    - Simple: Mask entities with placeholders (`<NAME>`, `<ACCOUNT>`)  
    - Advanced: Generate synthetic but realistic replacements
 
-3. **(Optionally) Use Diffusion Models**  
+3. **Use Diffusion Models**  
    - Inpaint text or images for realistic fill-ins  
    - Keep the document’s visual or textual consistency  
 
@@ -245,3 +246,5 @@ Speaker’s closing note:
 -->
 
 Thank you! 
+
+https://www.linkedin.com/in/piotr-gryko-7bb43725/
