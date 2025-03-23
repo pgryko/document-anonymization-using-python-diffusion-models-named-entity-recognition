@@ -1,5 +1,7 @@
 def main():
-    print("Hello from document-anonymization-using-python-diffusion-models-named-entity-recognition!")
+    print(
+        "Hello from document-anonymization-using-python-diffusion-models-named-entity-recognition!"
+    )
 
 
 if __name__ == "__main__":

@@ -14,7 +14,7 @@ Presenter's notes:
 - You can add speaker notes in HTML comments like this one.
 -->
 
-# **[DRAFT SLIDES] Anonymization of Sensitive Information in Financial Documents**  
+# **Anonymization of Sensitive Information in Financial Documents**  
 **Using Python, Diffusion Models, and Named Entity Recognition**
 
 **Speaker**: Dr Piotr Gryko
@@ -25,14 +25,9 @@ Presenter's notes:
 # **Overview**
 
 - **Why anonymize financial documents?**  
-  - Compliance with privacy laws (GDPR, HIPAA, etc.)  
-  - Protect sensitive client data  
-  - Facilitate internal analytics without exposing real PII  
-
-- **Key Techniques**  
-  1. Named Entity Recognition (NER) for PII detection  
-  2. Masking or synthetic replacement for anonymization  
-  3. Diffusion models for advanced inpainting (images/text)  
+  - Data is the new oil, but privacy is paramount
+- **Core value in businesses to be their data and not their models**
+![height:10cm](images/eric-schmit-100b-company.png)
 
 ---
 
@@ -49,13 +44,20 @@ Presenter's notes:
 
 ---
 
+**Key Techniques**  
+  1. Named Entity Recognition (NER) for PII detection  
+  2. Masking or synthetic replacement for anonymization  
+  3. Diffusion models for advanced inpainting (images/text)  
+
+---
+
 # **Challenges of Using ChatGPT**  
 
 - **Hallucinations**: Large language models can introduce factual errors  
 - **Inconsistency**: Repeated queries might yield different anonymizations  
 
 **Solution**:  
-- Self-hosted open-source tools (SpaCy, NLTK, PyTorch, etc.)  
+- Self-hosted open-source tools (SpaCy, Deep learning models, etc.)  
 - Consistent, customizable pipelines  
 - Infilling using specilised diffusion models 
 
@@ -67,11 +69,7 @@ Presenter's notes:
    - Names, addresses, account numbers, SSNs, etc.  
    - Use Named Entity Recognition (NER)
 
-2. **Anonymize or Replace**  
-   - Simple: Mask entities with placeholders (`<NAME>`, `<ACCOUNT>`)  
-   - Advanced: Generate synthetic but realistic replacements
-
-3. **Use Diffusion Models**  
+2. **Use Diffusion Models**  
    - Inpaint text or images for realistic fill-ins  
    - Keep the document’s visual or textual consistency  
 
@@ -84,27 +82,39 @@ Presenter's notes:
 
 - **Libraries**:
   - **SpaCy**: Fast, easily customizable, good pre-trained pipelines  
-  - **NLTK**: Classic, robust for general NLP tasks  
   - **PyTorch**: Build custom deep learning models for domain-specific needs  
 
 ---
+# Start with a baseline tool
 
-# **SpaCy NER Example**
+- **SpaCy**: Fast, easily customizable
+  - Relies on OCR for text extraction
+  - Use pre-trained models for common entities
+  - Fine-tune for domain-specific entities
+  - Limitations: Relies on OCR for text extraction - issues with handwriting, low-quality scans, burred text
+  - Microsoft's PII toolkit (Presidio) under the hood does exactly this - OCR + SPAcy
 
-```python
-import spacy
+---
 
-# Load a pre-trained NER model
-nlp = spacy.load("en_core_web_sm")
+---
+# Move to more complex deep learning methods**
 
-text = "John Doe has an account number 1234-5678-9101 at ABC Bank."
-doc = nlp(text)
+- **LayoutLLM**: Relies on OCR for text extraction and bounding boxes, uses a transformer model to predict entities
+- can be trained on custom datasets
+- Advantages: Better accuracy, can handle complex layouts
+- Limitations: Requires more data, compute resources, and training time
+- Also risks hallucinations and inconsistencies (consistent transformer models)
 
-for ent in doc.ents:
-    print(ent.text, ent.label_)
-```
 
-- Outputs named entities like `John Doe (PERSON)`, `ABC Bank (ORG)`, etc.  
+---
+# OCR-free Transformers**
+
+- **Donut**: OCR-free Document Understanding Transformer (2022)
+- **Vision Transformers/VLLMs**: SmolDocling, LayoutLMv3, etc.
+- They have the potential to replace OCR and NER in a single model
+- Advantages: Can handle complex layouts, potentially more accurate can error correct due to underlying LLM
+- Risks hallucinations and inconsistencies (consistent transformer models)
+- Mitigation approaches: Use a consistent transformer model, fine-tune on domain-specific data
 
 ---
 

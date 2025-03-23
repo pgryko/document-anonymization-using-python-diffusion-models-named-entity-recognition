@@ -11,6 +11,14 @@ A tool for anonymizing personally identifiable information (PII) in PDF document
 - Batch process multiple PDFs
 - Customizable entity types to anonymize
 
+## Sample data sources
+
+https://www.edisontd.nl/
+https://www.nist.gov/srd/nist-special-database-2
+[RVL-CDIP - Document image dataset](https://paperswithcode.com/dataset/rvl-cdip)
+
+https://microsoft.github.io/presidio/samples/
+
 ## Installation
 
 ### Using Poetry (recommended)
